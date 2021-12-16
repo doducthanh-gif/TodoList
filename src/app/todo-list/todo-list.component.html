@@ -33,7 +33,10 @@
                     <button class="my-app__task-header-btn-remove" (click)="deleteTask(item.id)"
                         style="background-color: rgb(245, 97, 104);">Remove</button>
                 </div>
+                
             </div>
+            <div class="date" >{{item.duDate}}</div>
+
             <hr width="100%" style="text-align: center;" />
             <div style="width: 380px;" class="my-app__task-header">
                 <input [(ngModel)]="item.title" [value]=item.title class="my-app__task-header-input" type="text">
