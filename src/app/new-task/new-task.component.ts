@@ -19,7 +19,7 @@ export class NewTaskComponent implements OnInit {
   ngOnInit(): void {
     this.initNewTaskForm();
     console.log('now', this.maxDate);
-    let jsonData = JSON.parse(sessionStorage?.getItem('task') as string)
+    let jsonData = JSON.parse(localStorage?.getItem('task') as string)
     if (jsonData !== null) {
       this.listTask = jsonData
     }
@@ -50,7 +50,7 @@ export class NewTaskComponent implements OnInit {
       alert('Vui lòng nhập đầy đủ trường')
     } else {
       this.listTask.push(Task)
-      sessionStorage.setItem("task", JSON.stringify(this.listTask));
+      localStorage.setItem("task", JSON.stringify(this.listTask));
       alert('Thành công')
       this.reloadPage()
     }

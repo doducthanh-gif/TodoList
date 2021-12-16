@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { RouterPreloader } from '@angular/router';
 
@@ -7,6 +8,7 @@ import { RouterPreloader } from '@angular/router';
   styleUrls: ['./todo-list.component.css']
 })
 export class TodoListComponent implements OnInit {
+  maxDate = formatDate(new Date(), 'yyyy-MM-dd', 'en_US')
   status: boolean = false;
   listTodoData: any[] = [];
   mainData: any[] = [];
@@ -15,15 +17,15 @@ export class TodoListComponent implements OnInit {
 
  
   ngOnInit(): void {
-    this.listTodoData = JSON.parse(sessionStorage.getItem('task') as string);
-    this.mainData = JSON.parse(sessionStorage.getItem('task') as string);
+    this.listTodoData = JSON.parse(localStorage.getItem('task') as string);
+    this.mainData = JSON.parse(localStorage.getItem('task') as string);
     console.log(this.listTodoData);
 
   }
 
   updateData() {
-    sessionStorage.removeItem("task");
-    sessionStorage.setItem("task", JSON.stringify(this.listTodoData));
+    localStorage.removeItem("task");
+    localStorage.setItem("task", JSON.stringify(this.listTodoData));
     alert('Update Thành Công')
     this.reloadPage();
 

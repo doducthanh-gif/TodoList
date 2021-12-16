@@ -25,7 +25,7 @@
                 <div class="my-app__task-header-checkbox">
                     <input (change)="handlerBulk($event)" [(ngModel)]="item.isCheck" value="item.isCheck"
                         type="checkbox">
-                    <span>{{item.title}}</span>
+                    <span style="margin-left: 15px;position: relative;top: -1px;" >{{item.title}}</span>
                 </div>
                 <div class="my-app__task-header-btn">
                     <button class="my-app__task-header-btn-detail" (click)="clickEvent(item.id)"
@@ -44,7 +44,7 @@
                         <div class="comon-text">Due Date</div>
                         <div>
                             <input class="calendar" type="date" id="start" name="trip-start" [(ngModel)]="item.duDate"
-                                [value]="item.duDate" min="2018-01-01" max="2018-12-31">
+                                [value]="item.duDate" min="2018-01-01" max={{maxDate}}>
                         </div>
                     </div>
                     <div class="du-piorty">
