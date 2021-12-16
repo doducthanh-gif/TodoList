@@ -1,0 +1,79 @@
+<!-- Todo List -->
+<div class="list-work">
+    <div class="my-app__header">
+        <div class="m-a__header--btn">
+            <div class="circle red"></div>
+            <div class="circle orange"></div>
+            <div class="circle gray"></div>
+        </div>
+        <div class="m-a__header--icon">
+            <i class="fas fa-angle-left"></i>
+            <i class="fas fa-angle-right"></i>
+            <i class="fas fa-align-justify"></i>
+        </div>
+        <div class="m-a__header--text">Todo list</div>
+
+    </div>
+    <hr width="100%" style="text-align: center;" />
+    <div class="my-app__body">
+        <div class="text-center">
+            <input (input)="searchList($event)" class="my-app__search" type="search" placeholder="Search...">
+        </div>
+        <div style="margin-top: 15px;" *ngFor="let item of listTodoData "
+            [ngClass]="item?.isClicked ? 'handleDetail' : ''" class="my-app__task">
+            <div style="display: flex;" class="my-app__task-header">
+                <div class="my-app__task-header-checkbox">
+                    <input (change)="handlerBulk($event)" [(ngModel)]="item.isCheck" value="item.isCheck"
+                        type="checkbox">
+                    <span>{{item.title}}</span>
+                </div>
+                <div class="my-app__task-header-btn">
+                    <button class="my-app__task-header-btn-detail" (click)="clickEvent(item.id)"
+                        style="background-color: rgb(142, 134, 250);">Details</button>
+                    <button class="my-app__task-header-btn-remove" (click)="deleteTask(item.id)"
+                        style="background-color: rgb(245, 97, 104);">Remove</button>
+                </div>
+            </div>
+            <hr width="100%" style="text-align: center;" />
+            <div style="width: 380px;" class="my-app__task-header">
+                <input [(ngModel)]="item.title" [value]=item.title class="my-app__task-header-input" type="text">
+                <div class="comon-text">Description</div>
+                <input [(ngModel)]="item.desc" [value]=item.desc class="my-app__task-header-desc" type="text">
+                <div class="m-a__body--select">
+                    <div class="du-date">
+                        <div class="comon-text">Due Date</div>
+                        <div>
+                            <input class="calendar" type="date" id="start" name="trip-start" [(ngModel)]="item.duDate"
+                                [value]="item.duDate" min="2018-01-01" max="2018-12-31">
+                        </div>
+                    </div>
+                    <div class="du-piorty">
+                        <div class="comon-text">Piorty</div>
+                        <div>
+                            <select [(ngModel)]="item.piority" [value]="item.piority" class="piorty" name="cars"
+                                id="cars">
+                                <option value="nomarl">Nomarl</option>
+                                <option value="low">Low</option>
+                                <option value="high">High</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button (click)="updateData()" class="m-a__body-btn">Update</button>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="isShowBulk" class="my-app__body--action">
+            <div class="my-app__body--action-text">
+                <span class="comon-text">Bulk Action:</span>
+            </div>
+            <div class="my-app__body--action-btn">
+                <button (click)="makeDone()" style="background: rgb(141, 123, 245);" class="">Done</button>
+                <button (click)="mutiDelete()" style="background: rgb(255, 94, 94);">Remove</button>
+            </div>
+
+        </div>
+    </div>
+</div>

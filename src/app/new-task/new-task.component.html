@@ -1,0 +1,62 @@
+<div class="my-container">
+    <div class="my-app" [formGroup]="newTaskForm">
+        <div class="my-app__header">
+            <div class="m-a__header--btn">
+                <div class="circle red"></div>
+                <div class="circle orange"></div>
+                <div class="circle gray"></div>
+            </div>
+            <div class="m-a__header--icon">
+                <i class="fas fa-angle-left"></i>
+                <i class="fas fa-angle-right"></i>
+                <i class="fas fa-align-justify"></i>
+            </div>
+            <div class="m-a__header--text">New Task</div>
+
+        </div>
+        <hr width="100%" style="text-align: center;" />
+
+        <div class="my-app__body">
+            <div class="text-center">
+                <input formControlName="title" class="m-a__body--input" type="text" placeholder="Add a new task...">
+            </div>
+            <small class="small" *ngIf="submitted && newTaskForm.controls.title.errors.required">Vui lòng nhập đầy
+                đủ</small>
+
+
+            <div class="comon-text">Description</div>
+            <div class="text-center">
+                <input formControlName="desc" class="m-a__body--input" style="padding-bottom: 80px; margin-top: 8px; "
+                    required type="text" placeholder="Add a new desc...">
+            </div>
+            <small class="small" *ngIf="submitted && newTaskForm.controls.desc.errors.required">Vui lòng nhập đầy
+                đủ</small>
+            <div class="m-a__body--select">
+                <div class="du-date">
+                    <div class="comon-text">Due Date</div>
+                    <div>
+                        <input formControlName="duDate" class="calendar" type="date" id="start" name="trip-start" [value]="maxDate"
+                            min="2018-01-01" max={{maxDate}}>
+                    </div>
+                </div>
+
+                <div class="du-piorty">
+                    <div class="comon-text">Piority</div>
+                    <div>
+                        <select formControlName="piority" class="piorty" name="cars" id="cars">
+                            <option value="nomarl">Nomarl</option>
+                            <option value="low">Low</option>
+                            <option value="high">High</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+                <small style="color: red;" *ngIf="submitted && newTaskForm.controls.duDate.errors.required">Nhập đủ đừng bỏ sót nhé!</small>
+            <button type="submit" (click)="addTaskToStorage()" class="m-a__body-btn">
+                Add
+            </button>
+        </div>
+    </div>
+
+    <app-todo-list></app-todo-list>
+</div>
